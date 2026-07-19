@@ -1,10 +1,11 @@
 /*
- * CustomerServiceTest.java
- * Test class for CustomerService
+ * CustomerControllerTest.java
+ * CustomerControllerTest model class
  * Author: Ethan Williams (221454780)
  * Date: 19 July 2026
  */
-package za.ac.cput.tekkiestorecapstone.service;
+
+package za.ac.cput.tekkiestorecapstone.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,25 +17,21 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import za.ac.cput.tekkiestorecapstone.domain.Customer;
 import za.ac.cput.tekkiestorecapstone.factory.CustomerFactory;
-import za.ac.cput.tekkiestorecapstone.repository.CustomerRepository;
-
+import za.ac.cput.tekkiestorecapstone.service.CustomerService;
 import java.util.List;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.MethodName.class)
-class CustomerServiceTest {
+class CustomerControllerTest {
 
     @Mock
-    CustomerRepository repo;
+    private CustomerService service;
 
     @InjectMocks
-    CustomerService service;
+    private CustomerController controller;
 
     private static Customer customer;
 
@@ -57,27 +54,29 @@ class CustomerServiceTest {
 
     @Test
     void a_create() {
-        when(repo.save(any(Customer.class))).thenReturn(customer);
+        when(service.create(any(Customer.class))).thenReturn(customer);
 
-        Customer created = service.create(customer);
+        Customer created = controller.create(customer);
 
         assertNotNull(created);
-        assertEquals(created.getCustomerId(), customer.getCustomerId());
-        assertEquals(created.getEmail(), customer.getEmail());
-        assertEquals(created.getName().getFirstName(), customer.getName().getFirstName());
+        assertEquals(customer.getCustomerId(), created.getCustomerId());
+        assertEquals(customer.getEmail(), created.getEmail());
+        assertEquals(customer.getName().getFirstName(), created.getName().getFirstName());
 
-        System.out.println("Success: " + created);
+        System.out.println("Customer created: " + created);
     }
 
     @Test
     void b_read() {
-        when(repo.findById(customer.getCustomerId())).thenReturn(Optional.of(customer));
+        when(service.read("C001")).thenReturn(customer);
 
-        Customer read = service.read(customer.getCustomerId());
-        assertNotNull(read);
-        assertEquals(customer.getCustomerId(), read.getCustomerId());
+        Customer found = controller.read("C001");
 
-        System.out.println("Success: " + read);
+        assertNotNull(found);
+        assertEquals("C001", found.getCustomerId());
+        assertEquals("johnsmith@gmail.com", found.getEmail());
+
+        System.out.println("Customer found: " + found);
     }
 
     @Test
@@ -88,32 +87,38 @@ class CustomerServiceTest {
                 .setMobileNumber("0837654321")
                 .build();
 
-        when(repo.save(any(Customer.class))).thenReturn(updated);
+        when(service.update(any(Customer.class))).thenReturn(updated);
 
-        Customer updatedCustomer = service.update(updated);
+        Customer updatedCustomer = controller.update(updated);
+
         assertNotNull(updatedCustomer);
         assertEquals("john.updated@gmail.com", updatedCustomer.getEmail());
         assertEquals("0837654321", updatedCustomer.getMobileNumber());
 
-        System.out.println("Success: " + updatedCustomer);
+        System.out.println("Customer updated: " + updatedCustomer);
     }
 
     @Test
     void d_delete() {
-        boolean success = service.delete(customer.getCustomerId());
-        verify(repo).deleteById(customer.getCustomerId());
-        assertTrue(success);
+        when(service.delete("C001")).thenReturn(true);
 
-        System.out.println("Success: " + success);
+        boolean deleted = controller.delete("C001");
+
+        assertTrue(deleted);
+
+        System.out.println("Customer deleted: " + deleted);
     }
 
     @Test
     void e_getAll() {
-        when(repo.findAll()).thenReturn(List.of(customer));
-        List<Customer> all = service.getAll();
+        when(service.getAll()).thenReturn(List.of(customer));
 
-        assertNotNull(all);
-        assertEquals(1, all.size());
-        System.out.println("Success: " + all);
+        List<Customer> customers = controller.getAll();
+
+        assertNotNull(customers);
+        assertEquals(1, customers.size());
+        assertEquals("C001", customers.get(0).getCustomerId());
+
+        System.out.println("All customers: " + customers);
     }
 }

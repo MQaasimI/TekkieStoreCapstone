@@ -1,3 +1,9 @@
+/*
+ * AddressFactory.java
+ * Factory for Address Value Object
+ * Author: Ethan Williams (221454780)
+ * Date: 19 July 2026
+ */
 package za.ac.cput.tekkiestorecapstone.factory;
 
 import za.ac.cput.tekkiestorecapstone.domain.Address;

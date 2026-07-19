@@ -1,3 +1,9 @@
+/*
+ * CartFactoryTest.java
+ * Test class for CartFactory
+ * Author: Ethan Williams (221454780)
+ * Date: 19 July 2026
+ */
 package za.ac.cput.tekkiestorecapstone.factory;
 
 import org.junit.jupiter.api.MethodOrderer;

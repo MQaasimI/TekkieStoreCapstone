@@ -1,3 +1,9 @@
+/*
+ * Address.java
+ * Address Value Object
+ * Author: Ethan Williams (221454780)
+ * Date: 19 July 2026
+ */
 package za.ac.cput.tekkiestorecapstone.domain;
 
 public class Address {

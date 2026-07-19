@@ -1,3 +1,9 @@
+/*
+ * CustomerService.java
+ * Customer Service Implementation
+ * Author: Ethan Williams (221454780)
+ * Date: 19 July 2026
+ */
 package za.ac.cput.tekkiestorecapstone.service;
 
 import org.springframework.beans.factory.annotation.Autowired;

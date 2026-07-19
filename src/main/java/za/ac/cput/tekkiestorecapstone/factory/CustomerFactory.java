@@ -1,3 +1,9 @@
+/*
+ * CustomerFactory.java
+ * Factory for Customer Domain Entity
+ * Author: Ethan Williams (221454780)
+ * Date: 19 July 2026
+ */
 package za.ac.cput.tekkiestorecapstone.factory;
 
 import za.ac.cput.tekkiestorecapstone.domain.Address;
