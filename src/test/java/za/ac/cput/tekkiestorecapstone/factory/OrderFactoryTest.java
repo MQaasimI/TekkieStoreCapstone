@@ -1,5 +1,11 @@
 package za.ac.cput.tekkiestorecapstone.factory;
 
+/* OrderFactoryTest.java
+OrderFactoryTest model class
+Author: Qaasim Isaacs(222544422)
+Date: 19 july 2026
+*/
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;

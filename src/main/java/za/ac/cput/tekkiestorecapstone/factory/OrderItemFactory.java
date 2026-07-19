@@ -1,5 +1,11 @@
 package za.ac.cput.tekkiestorecapstone.factory;
 
+/* OrderItemFactory.java
+OrderItemFactory model class
+Author: Qaasim Isaacs(222544422)
+Date: 19 july 2026
+*/
+
 import za.ac.cput.tekkiestorecapstone.domain.OrderItem;
 import za.ac.cput.tekkiestorecapstone.util.Helper;
 

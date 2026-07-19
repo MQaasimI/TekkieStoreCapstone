@@ -1,5 +1,11 @@
 package za.ac.cput.tekkiestorecapstone.service;
 
+/* OrderService.java
+OrderService model class
+Author: Qaasim Isaacs(222544422)
+Date: 19 july 2026
+*/
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.tekkiestorecapstone.domain.Order;
