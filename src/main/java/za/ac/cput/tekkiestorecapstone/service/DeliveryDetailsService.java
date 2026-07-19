@@ -31,8 +31,9 @@ public class DeliveryDetailsService implements IDeliveryDetailsService {
     }
 
     @Override
-    public boolean delete(String s) {
-        return this.repo.existsById(s);
+    public boolean delete(String variantId) {
+        this.repo.deleteById(variantId);
+        return true;
     }
 
     @Override
