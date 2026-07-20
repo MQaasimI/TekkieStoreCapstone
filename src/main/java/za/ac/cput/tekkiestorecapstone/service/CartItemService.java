@@ -34,7 +34,8 @@ public class CartItemService implements ICartItemService {
 
     @Override
     public boolean delete(String s) {
-        return this.repo.existsById(s);
+        this.repo.deleteById(s);
+        return true;
     }
 
     @Override
